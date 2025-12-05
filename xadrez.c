@@ -4,71 +4,107 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
 // O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
 
-int main() {
-    // Nível Novato - Movimentação das Peças
 
-    // 1. MOVIMENTO DA TORRE — uso estrutura FOR
+
+    void movimentoTorre(int casas) {
+        if(casas > 0) {
+            printf("Direita\n");
+            movimentoTorre(casas - 1);
+        }
+    }
+
+    void movimentoRainha(int casas) {
+        if(casas > 0) {
+            printf("Esquerda\n");
+            movimentoRainha(casas - 1);
+        }
+    }
+
+
+
+int main() {
+
+    // 1. MOVIMENTO DA TORRE — usa estrutura Recursão
     // A torre se move 5 casas para a direita.
 
-    int movimentoTorre = 5; //Número de casas
+
+    int casasTorre = 5; //Número de casas
     printf("° Movimento da Torre! °\n");
+    movimentoTorre(casasTorre);
+    
 
-    for (int i = 1; i <= movimentoTorre; i++) {
-        printf("Direita\n"); //Exibe até a condição se tornar falsa, (i chegar a 5). 
-    }
 
-    // 2. MOVIMENTO DO BISPO — uso estrutura WHILE
+
+    // 2. MOVIMENTO DO BISPO — usa estrutura loops alinhados
     // O bispo se move 5 casas na diagonal para cima e direita.
 
-    int movimentoBispo = 5; //Número de casas
-    int contadorBispo = 0;
 
-    printf("\n° Movimento do Bispo! °\n");
+    int movimentoBispoVertical = 5;
+    int movimentoBispoHorizontal = 5;
 
-    while (contadorBispo < movimentoBispo) {
-        printf("Cima Direita\n"); //Exibe até a condição se tornar falsa, (contadorBispo chegar a 5).
-        contadorBispo++;
+    printf("\n° Movimento do Bispo (loops aninhados)! °\n");
+
+    for (int i = 0; i < movimentoBispoVertical; i++) {
+    printf("Cima\n"); // loop externo controla a vertical
+
+    for (int j = 0; j < movimentoBispoHorizontal; j++) {
+        printf("Direita\n"); // loop interno controla a horizontal
+        break; // imprime só uma vez por linha, simulando diagonal
     }
+}
 
-    // 3. MOVIMENTO DA RAINHA — uso estrutura DO-WHILE
+
+
+
+    // 3. MOVIMENTO DA RAINHA — usa estrutura Recursão
     // A rainha se move 8 casas para a esquerda.
 
-    int movimentoRainha = 8; //Número de casas
-    int contadorRainha = 0; //Exibe até a condição se tornar falsa, (contadorRainha chegar a 8).
+
+    int casasRainha = 8; // número de casas
 
     printf("\n° Movimento da Rainha! °\n");
-
-    do {
-        printf("Esquerda\n");
-        contadorRainha++;
-    } while (contadorRainha < movimentoRainha);
-
+    movimentoRainha(casasRainha);
 
     // Nível Aventureiro - Movimentação do Cavalo
     // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
     // Um loop pode representar a movimentação horizontal e outro vertical.
+    
+
+
+    
     // 4. MOVIMENTO DO CAVALO — usa loops aninhados (FOR e WHILE)
     
-    int movimentoCavaloBaixo = 2; // duas casas para baixo
-    int movimentoCavaloEsquerda = 1; // uma casa para esquerda
-    int i, j;
-
+    
     printf("\n° Movimento do Cavalo! °\n");
 
-    // Loop externo: FOR para o movimento para baixo
-    for (i = 0; i < movimentoCavaloBaixo; i++) {
-        printf("Baixo\n"); //Exibe até a condição se tornar falsa, (movimentoCavaloBaixo chegar a 2).
+    int movimentoCima = 2;
+    int movimentoDireita = 1;
 
-        // Loop interno: WHILE para cada casa de esquerda (neste caso só 1)
-        j = 0;
-        while (j < movimentoCavaloEsquerda) {
-            if (i == movimentoCavaloBaixo - 1) // só na última iteração para completar o "L"
-            { 
-                printf("Esquerda\n"); //Exibe somente depois de terminar o movimento para baixo.).
-            }
-            j++;
-        }
+    for(int i = 0; i < movimentoCima; i++){
+
+        //Exibe movimento para cima...
+        printf("Cima\n");
+
+        //Se ainda não estamos na última subida, pula para a próxima iteração~
+        if (i < movimentoCima - 1){
+        continue;
+    
     }
+
+    //Quando chegar na última subida, entra no loop da direita...
+
+    int j = 0;
+    while (j < movimentoDireita){
+        //Exibe movimento para direita...
+        printf("Direita\n");
+    break;
+    }
+}
+    
+return 0;
+}
+
+
 
     // Nível Mestre - Funções Recursivas e Loops Aninhados
     // Sugestão: Substitua as movimentações das peças por funções recursivas.
@@ -77,5 +113,5 @@ int main() {
     // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
     // Inclua o uso de continue e break dentro dos loops.
 
-    return 0;
-}
+
+    // Subistitui porque achei que fosse assim para ser feito, caso não seja fico feliz em concerta-ló caso for nescessário.
